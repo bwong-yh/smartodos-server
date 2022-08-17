@@ -4,71 +4,71 @@ const router = express.Router();
 
 const pool = require('../db');
 
-// create todo
+// create list
 router.post('/', async (req, res) => {
   try {
-    const { name, list_id } = req.body;
+    const { name } = req.body;
     const created_at = new Date();
 
     await pool.query(
-      "INSERT INTO todos (name, list_id, created_at) VALUES ($1, $2, $3) RETURNING *",
-      [name, list_id, created_at]
+      "INSERT INTO lists (name, created_at) VALUES ($1, $2) RETURNING *",
+      [name, created_at]
     );
 
-    res.json("Todo Created.");
+    res.json("List Created.");
   } catch (err) {
     console.log(err.messsage);
   }
 });
 
-// get all todos
+// get all lists
 router.get('/', async (req, res) => {
   try {
-    const allTodos = await pool.query("SELECT * FROM todos;");
+    const allLists = await pool.query("SELECT * FROM lists;");
 
-    res.json(allTodos.rows);
+    res.json(allLists.rows);
   } catch (err) {
     console.log(err.message);
   }
 });
 
-// get a todo
+// get a list
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
-    const todo = await pool.query("SELECT * FROM todos WHERE id = $1;", [id]);
+    const list = await pool.query("SELECT * FROM lists WHERE id = $1;", [id]);
 
-    res.json(todo.rows);
+    res.json(list.rows);
   } catch (err) {
     console.log(err.message);
   }
 });
 
-// update a todo
+// update a list
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
 
     await pool.query(
-      "UPDATE todos SET name = $1 WHERE id = $2 RETURNING *;",
+      "UPDATE lists SET name = $1 WHERE id = $2 RETURNING *;",
       [name, id]);
 
-    res.json("Todo Updated.");
+    res.json("List Updated.");
   } catch (err) {
     console.log(err.message);
   }
 });
 
-// delete a todo
+// delete a list
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
-    await pool.query("DELETE FROM todos WHERE id = $1", [id]);
+    await pool.query("DELETE FROM lists WHERE id = $1", [id]);
 
-    res.json("Todo Deleted.");
+    res.json("List Deleted.");
   } catch (err) {
     console.log(err.message);
   }
