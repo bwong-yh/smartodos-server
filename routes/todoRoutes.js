@@ -7,7 +7,7 @@ const pool = require('../db');
 // create todo
 router.post('/', async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, list_id } = req.body;
     const created_at = new Date();
 
     await pool.query(
