@@ -11,8 +11,8 @@ router.post('/', async (req, res) => {
     const created_at = new Date();
 
     await pool.query(
-      "INSERT INTO todos (name, created_at) VALUES ($1, $2) RETURNING *",
-      [name, created_at]
+      "INSERT INTO todos (name, list_id, created_at) VALUES ($1, $2, $3) RETURNING *",
+      [name, list_id, created_at]
     );
 
     res.json("Todo Created.");

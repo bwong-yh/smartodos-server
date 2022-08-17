@@ -16,18 +16,18 @@ DROP TABLE IF EXISTS todos CASCADE;
 --   name VARCHAR(255) NOT NULL
 -- );
 
--- CREATE TABLE lists (
---   id SERIAL PRIMARY KEY NOT NULL,
---   user_id INT REFERENCES users ON DELETE CASCADE,
---   name VARCHAR(255) NOT NULL,
---   icon_url VARCHAR(255)
--- );
+CREATE TABLE lists (
+  id SERIAL PRIMARY KEY NOT NULL,
+  -- user_id INT REFERENCES users ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL
+  -- icon_url VARCHAR(255)
+);
 
 CREATE TABLE todos (
   id SERIAL PRIMARY KEY NOT NULL,
-  -- list_id INT REFERENCES lists ON DELETE CASCADE,
+  list_id INT REFERENCES lists ON DELETE CASCADE,
   -- category_id INT REFERENCES categories ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
-  created_at DATE NOT NULL
-  -- priority BOOLEAN DEFAULT FALSE
+  created_at DATE NOT NULL,
+  priority BOOLEAN DEFAULT FALSE
 );
