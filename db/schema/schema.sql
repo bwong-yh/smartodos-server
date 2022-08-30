@@ -20,7 +20,7 @@ CREATE TABLE lists (
   id SERIAL PRIMARY KEY NOT NULL,
   -- user_id INT REFERENCES users ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
-  created_at DATE NOT NULL
+  created DATE NOT NULL
   -- icon_url VARCHAR(255)
 );
 
@@ -29,6 +29,6 @@ CREATE TABLE todos (
   list_id INT REFERENCES lists ON DELETE CASCADE,
   -- category_id INT REFERENCES categories ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
-  created_at DATE NOT NULL,
+  created DATE NOT NULL,
   priority BOOLEAN DEFAULT FALSE
 );

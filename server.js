@@ -1,11 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-
 const todoRoutes = require('./routes/todoRoutes');
 const listRoutes = require('./routes/listRoutes');
 
 // database
-const pool = require('./db');
+require('./db');
 
 const app = express();
 
