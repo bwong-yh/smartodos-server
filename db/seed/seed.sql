@@ -1,7 +1,7 @@
 INSERT INTO categories(name) VALUES
   ('education'),
   ('career'),
-  ('relationships'),
+  ('social'),
   ('leisure'),
   ('shopping'),
   ('health'),

@@ -1,5 +1,11 @@
 const express = require('express');
-const { get_all_lists, create_list, get_list, update_list, delete_list } = require('../controllers/listController');
+const {
+  get_all_lists,
+  create_list,
+  get_list,
+  update_list,
+  delete_list,
+} = require('../controllers/listsController');
 
 const router = express.Router();
 

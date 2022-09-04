@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const todoRoutes = require('./routes/todoRoutes');
-const listRoutes = require('./routes/listRoutes');
+const listsRoutes = require('./routes/listsRoutes');
 
 // database
 require('./db');
@@ -17,4 +17,4 @@ app.listen(3003, () => console.log('listening on port 3003'));
 
 // routes //
 app.use('/api/todos', todoRoutes);
-app.use('/api/lists', listRoutes);
+app.use('/api/lists', listsRoutes);
