@@ -15,12 +15,12 @@ const create_list = async (req, res) => {
     const { name } = req.body;
     const created = new Date();
 
-    await pool.query(
+    const newList = await pool.query(
       'INSERT INTO lists (name, created) VALUES ($1, $2) RETURNING *',
       [name, created]
     );
 
-    res.json('List Created.');
+    res.json(newList);
   } catch (err) {
     console.log(err.messsage);
   }
@@ -42,13 +42,14 @@ const update_list = async (req, res) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
+    const created = new Date();
 
-    await pool.query('UPDATE lists SET name = $1 WHERE id = $2 RETURNING *;', [
-      name,
-      id,
-    ]);
+    const editList = await pool.query(
+      'UPDATE lists SET name = $1, created = $2 WHERE id = $3 RETURNING *;',
+      [name, created, id]
+    );
 
-    res.json('List Updated.');
+    res.json(editList);
   } catch (err) {
     console.log(err.message);
   }
