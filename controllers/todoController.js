@@ -46,8 +46,8 @@ const update_todo = async (req, res) => {
 
     await pool.query('UPDATE todos SET name = $1, updated = $2 WHERE id = $2 RETURNING *;', [
       name,
-      updated
-      id,
+      updated,
+      id
     ]);
 
     res.json('Todo Updated.');
