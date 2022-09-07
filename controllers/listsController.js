@@ -42,11 +42,11 @@ const update_list = async (req, res) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
-    const created = new Date();
+    const updated = new Date();
 
     const editList = await pool.query(
-      'UPDATE lists SET name = $1, created = $2 WHERE id = $3 RETURNING *;',
-      [name, created, id]
+      'UPDATE lists SET name = $1, updated = $2 WHERE id = $3 RETURNING *;',
+      [name, updated, id]
     );
 
     res.json(editList);

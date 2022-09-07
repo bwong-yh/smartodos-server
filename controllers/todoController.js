@@ -42,9 +42,11 @@ const update_todo = async (req, res) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
+    const updated = new Date();
 
-    await pool.query('UPDATE todos SET name = $1 WHERE id = $2 RETURNING *;', [
+    await pool.query('UPDATE todos SET name = $1, updated = $2 WHERE id = $2 RETURNING *;', [
       name,
+      updated
       id,
     ]);
 
